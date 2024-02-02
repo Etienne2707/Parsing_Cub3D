@@ -39,6 +39,7 @@ char *get_nmalloc(char *str, int start, int end)
     return (dest);
 }
 
+
 int ft_strstr(char *str, char *to_find)
 {
 	int i;
@@ -58,7 +59,7 @@ int ft_strstr(char *str, char *to_find)
 		}
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 
@@ -89,4 +90,37 @@ int check_arg_after(char *str, int last)
     {
         return (-1);
     }
+}
+
+
+int check_arg_before(char *src,char *find)
+{
+    int i;
+    int k;
+
+    k = ft_strstr(src,find);
+    i = 0;
+    printf("%s et %d et %d\n",find,k,src[i]);
+    while (i < k)
+    {
+        
+        if (src[i] != 32 && (src[i] < 9 || src[i] > 13))
+        {
+            return (-1);
+        }
+        i++;
+    }
+    return (1);
+}
+
+int ft_strlen_double(char **str)
+{
+    int i;
+    
+    i = 0;
+    if (!str)
+        return (-1);
+    while (str[i] != 0)
+        i++;
+    return (i);
 }

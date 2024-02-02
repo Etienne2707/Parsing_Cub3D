@@ -4,16 +4,14 @@ int init_pstruct(t_parsing *p)
 {
     p->lcount = 0;
     p->map = NULL;
-    p->pos = malloc(sizeof(char **) * 6);
-    if (!p->pos)
-        return (-1);
-    return (0);
+    p->pos = NULL;
+    return (1);
 }
 
 char *file_cpy(char *dest, char *str)
 {
     if (!dest)
-        dest = strdup(str);
+        return (dest = strdup(str));
     dest = ft_strjoin(dest,ft_strdup(str));
     if (!dest)
         return (NULL);
@@ -32,7 +30,7 @@ int parsing(t_parsing *p, int fd)
         if (!str)
             break ;
         dest = file_cpy(dest,str);
-        
+        free(str);
     }
     if (get_config(p,dest) == -1)
     {
