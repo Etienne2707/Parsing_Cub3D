@@ -16,6 +16,15 @@ typedef struct s_pos
 
 }  t_pos;
 
+typedef struct s_malloc
+{
+    char *pointer;
+    char **pointer2;
+	struct s_malloc	*next;
+	struct s_malloc	*back;
+
+}  t_malloc;
+
 
 typedef struct s_parsing
 {
@@ -23,8 +32,19 @@ typedef struct s_parsing
     char **map;
     t_pos *begin;
     t_pos *pos;
+    t_malloc *_malloc;
+    t_malloc *_mbegin;
 }   t_parsing;
 
+typedef struct s_map
+{
+    int _last;
+    int _first;
+    int _Pcounter;
+    char **_map;
+    int _Ypos;
+    int _Xpos;
+} t_map;
 int main(int ac, char **argv);
 
 //parsing
@@ -32,6 +52,14 @@ int get_config(t_parsing *p,char *dest);
 int check_arg_before(char *src,char *find);
 int check_arg_after(char *str, int last);
 int check_map(char **map);
+
+
+//map
+int parsing_map(t_parsing *p);
+
+//free_global
+int push_malloc(t_parsing *p,char *str);
+int push_malloc_double(t_parsing *p,char **str);
 
 //utils
 int skip_space(char *str, int i);

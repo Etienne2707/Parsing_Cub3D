@@ -14,7 +14,7 @@ int check_char(char **map)
         k = 0;
         while (map[i][k] != '\0')
         {
-            printf("%c",map[i][k]);
+            //printf("%c",map[i][k]);
             if (map[i][k] != 32 && map[i][k] != '1' && map[i][k] != '0' && map[i][k] != 'N')
                 return (-1);
             if (map[i][k] == 'N')

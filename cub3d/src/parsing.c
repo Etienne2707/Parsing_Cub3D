@@ -71,8 +71,9 @@ int init_map(char *dest, t_parsing *p)
 
     i = 0;
     index = 0;
-    //printf("ft : %d\n",ft_line_count(dest) + 1);
-    p->map = malloc(sizeof(char *) * (ft_line_count(dest) + 1));
+    printf("ft : %d\n",ft_line_count(dest) + 1);
+    p->map = malloc(sizeof(char *) * (ft_line_count(dest) + 2));
+    push_malloc_double(p,p->map);
     if (!p->map)
         return (-1);
 
@@ -85,6 +86,7 @@ int init_map(char *dest, t_parsing *p)
         index++;
     }
     free(dest);
+    printf("p->map = %d\n",index);
     p->map[index] = 0;
     return 1;
 }
@@ -153,8 +155,8 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
 
     i = 0;
     k = 0;
-    //printf("len : %d\n", ft_strlen_double(map) - 1);
-    dest = malloc(sizeof(char *) * ft_strlen_double(map) - 1);
+    printf("len : %d\n", ft_strlen_double(map));
+    dest = malloc(sizeof(char *) * ft_strlen_double(map));
     if (!dest)
         return (NULL);
     while (map[i] != 0)
@@ -172,6 +174,7 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
         k++;      
         i++;
     }
+    printf("len de k = %d\n",k);
     dest[k] = 0;
     return (dest);
     
@@ -222,13 +225,9 @@ int get_config(t_parsing *p, char *dest)
     init_map(dest, p);
     if (get_info(p,config) == -1)
         return (-1);
+    
+    //printdoubletab(p->map);
     if (check_map(p->map) == -1)
         return (-1);
-    printdoubletab(p->map);
-    for (int i = 0; p->map[i] != NULL; i++) {
-        free(p->map[i]);
-    }
-    free(p->map);
-    free(config);  // Free allocated memory for config
     return 0;
 }

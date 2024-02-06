@@ -21,7 +21,7 @@ INC_DIR =		./includes
 LIBFT_DIR =		./libft
 
 SRCS =			$(addprefix src/, \
-				main.c parsing.c utils.c utils2.c map_checker.c)
+				main.c parsing.c utils.c utils2.c map_checker.c parsing_map.c)
 
 OBJS =			${SRCS:.c=.o}
 

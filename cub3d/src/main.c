@@ -36,9 +36,11 @@ int parsing(t_parsing *p, int fd)
     {
         return(-1);
     }
+    if (parsing_map(p) == -1)
+    {
+        return (-1);
+    }
     return (1);
-    printf("%s", dest);
-    printf("%d\n",p->lcount);
 }
 
 int main(int ac , char **argv)
