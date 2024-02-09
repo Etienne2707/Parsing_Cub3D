@@ -122,23 +122,35 @@ int check_wall_posY(t_map *m, int y, int x)
 
     _y = y;
     result = 0;
-    while (m->_map[y++][x] != 0)
+    while (m->_map[y] != 0)
     {
+        if (x >= ft_strlen(m->_map[y]))
+        {
+            printf("je suis la");
+            return (-1);
+        }
         if (m->_map[y][x] == '1')
         {
             result++;
             break ;
         }
-    }
-    while (_y-- != 0)
+        y++;
+    }    
+    while (_y != -1)
     {
-        if (m->_map[y][x] == '1')
+        if (x >= ft_strlen(m->_map[_y]))
+        {
+            return (-1);
+        }
+        printf("pos y:%d x:%d et %c\n",_y,x,m->_map[_y][x]);
+        if (m->_map[_y][x] == '1')
         {
             result++;
             break ;
         }
+        _y--;
     }
-    if (result == 0)
+    if (result < 2)
         printf("y = %d et x = %d\n",start,x);
     printf("%d",result);
     if (result == 2)
@@ -154,6 +166,7 @@ int check_wall_pos(t_map *m, int y, int x)
         return (-1);
     return (1);
 }
+
 int check_wall(t_map *m)
 {
     int i;
@@ -177,8 +190,6 @@ int check_wall(t_map *m)
     printf("\n");
     return (1);
 }
-
-
 
 int parsing_map(t_parsing *p)
 {
