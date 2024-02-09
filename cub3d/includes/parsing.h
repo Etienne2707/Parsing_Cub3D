@@ -60,13 +60,18 @@ int parsing_map(t_parsing *p);
 //free_global
 int push_malloc(t_parsing *p,char *str);
 int push_malloc_double(t_parsing *p,char **str);
+void    free_double_array(char **str);
+void	get_list(t_pos **pos, t_parsing *p , char *arg, char *value);
+void    free_structs(t_parsing *p);
+void    free_map(t_map *m);
+
+
 
 //utils
 int skip_space(char *str, int i);
 void    printdoubletab(char **str);
 int check_only_space(char *str,int index);
 int ft_strlen_double(char **str);
-int push_front_list(t_parsing *p,char *arg, char *value);
 void    printtab(char *str);
 int ft_strstr(char *str, char *to_find);
 

@@ -1,80 +1,100 @@
 #include "../includes/parsing.h"
 
-int push_front_list(t_parsing *p,char *arg, char *value)
-{
-    t_pos *cell;
 
-    cell = malloc(sizeof(t_pos));
-    if (!cell)
+
+
+static t_pos	*get_info(char *arg,char *value)
+{
+    t_pos *new;
+
+    new = (t_pos *)malloc(sizeof(t_pos));
+    if (!new)
         return (-1);
     
-    cell->arg = arg;
-    cell->value = value;
-    cell->next = NULL;
-    cell->back = NULL;
+    new->arg = arg;
+    new->value = value;
+    new->next = NULL;
+    new->back = NULL;
+	return (new);
+}
 
-    //printf("cell arg : %s\n",cell->arg);
-    if(p->pos == NULL)
+int push_front_list(t_pos **pos,t_pos *new,t_parsing *p)
+{
+    t_pos *tmp;
+
+    tmp = *pos;
+    //printf("new arg : %s\n",new->arg);
+    if(*pos == NULL)
     {
-        p->pos = cell;
-        p->begin = cell;
+        *pos = new;
+        p->begin = new;
+        return (1);
     }
-    else
-    {
-        p->pos->next = cell;
-        cell->back = p->pos;
-    }
+    while (tmp->next != NULL)
+        tmp = tmp->next;
+    tmp->next = new;
+    new->back = tmp;
     return (1);
+}
+
+void	get_list(t_pos **pos, t_parsing *p , char *arg, char *value)
+{
+	t_pos	*new;
+
+	new = get_info(arg,value);
+	if (!new)
+		return ;
+	push_front_list(pos,new,p);
 }
 
 int push_malloc(t_parsing *p,char *str)
 {
-    t_malloc *cell;
+    t_malloc *new;
 
-    cell = malloc(sizeof(t_malloc));
-    if (!cell)
+    new = malloc(sizeof(t_malloc));
+    if (!new)
         return (-1);
-    cell->pointer = str;
-    cell->pointer2 = NULL;
-    cell->next = NULL;
-    cell->back = NULL;
+    new->pointer = str;
+    new->pointer2 = NULL;
+    new->next = NULL;
+    new->back = NULL;
 
-    printf("nalloc arg : %s\n",cell->pointer);
+    printf("nalloc arg : %s\n",new->pointer);
     if(p->_malloc == NULL)
     {
-        p->_malloc = cell;
-        p->_mbegin = cell;
+        p->_malloc = new;
+        p->_mbegin = new;
     }
     else
     {
-        p->_malloc->next = cell;
-        cell->back = p->_malloc;
+        p->_malloc->next = new;
+        new->back = p->_malloc;
     }
     return (1);
 }
 
 int push_malloc_double(t_parsing *p,char **str)
 {
-    t_malloc *cell;
+    t_malloc *new;
 
-    cell = malloc(sizeof(t_malloc));
-    if (!cell)
+    new = malloc(sizeof(t_malloc));
+    if (!new)
         return (-1);
-    cell->pointer = NULL;
-    cell->pointer2 = str;
-    cell->next = NULL;
-    cell->back = NULL;
+    new->pointer = NULL;
+    new->pointer2 = str;
+    new->next = NULL;
+    new->back = NULL;
 
-    printf("malloc : %p\n && %p",cell->pointer2,str);
+    printf("malloc : %p\n && %p",new->pointer2,str);
     if(p->_malloc == NULL)
     {
-        p->_malloc = cell;
-        p->_mbegin = cell;
+        p->_malloc = new;
+        p->_mbegin = new;
     }
     else
     {
-        p->_malloc->next = cell;
-        cell->back = p->_malloc;
+        p->_malloc->next = new;
+        new->back = p->_malloc;
     }
     return (1);
 }

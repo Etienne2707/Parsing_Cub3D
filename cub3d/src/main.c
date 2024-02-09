@@ -10,11 +10,15 @@ int init_pstruct(t_parsing *p)
 
 char *file_cpy(char *dest, char *str)
 {
+    char *tmp;
+
     if (!dest)
         return (dest = strdup(str));
-    dest = ft_strjoin(dest,ft_strdup(str));
-    if (!dest)
+    tmp = ft_strjoin(dest,str);
+    if (!tmp)
         return (NULL);
+    free(dest);
+    return (tmp);
 }
 
 int parsing(t_parsing *p, int fd)
@@ -40,6 +44,7 @@ int parsing(t_parsing *p, int fd)
     {
         return (-1);
     }
+    free_structs(p);
     return (1);
 }
 

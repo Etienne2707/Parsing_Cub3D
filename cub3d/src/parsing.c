@@ -5,7 +5,6 @@ char **init_config()
     char **config = malloc(sizeof(char *) * 7);
     if (!config)
         return NULL;
-
     config[0] = "NO ";
     config[1] = "SO ";
     config[2] = "WE ";
@@ -73,7 +72,6 @@ int init_map(char *dest, t_parsing *p)
     index = 0;
     printf("ft : %d\n",ft_line_count(dest) + 1);
     p->map = malloc(sizeof(char *) * (ft_line_count(dest) + 2));
-    push_malloc_double(p,p->map);
     if (!p->map)
         return (-1);
 
@@ -125,11 +123,19 @@ char *get_pos(char *map,char *config)
     tmp = get_nmalloc(map,i,k);
     if (!tmp)
         return (NULL);
-    free(map);
-    
     return (tmp);
     
 }
+
+void print_list(t_pos *pos) 
+{
+    t_pos *current = pos;
+    while (current != NULL) {
+        printf("liste chaine arg: %s value : %s\n", current->arg, current->value);
+        current = current->next;
+    }
+}
+
 
 int set_pos(t_parsing *p,char *map,char *config)
 {
@@ -137,13 +143,8 @@ int set_pos(t_parsing *p,char *map,char *config)
     if (!map)
         return (-1);
     //printf("map :%s\n",map);
-    push_front_list(p,map,config);
-    
-    while(p->pos != NULL)
-    {
-        printf("liste chaine arg: %s value : %s\n",p->pos->value,p->pos->arg);
-        p->pos = p->pos->next;
-    }
+    get_list(&p->pos,p,map,config);
+    print_list(p->pos);
 }
 
 char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
@@ -155,7 +156,6 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
 
     i = 0;
     k = 0;
-    printf("len : %d\n", ft_strlen_double(map));
     dest = malloc(sizeof(char *) * ft_strlen_double(map));
     if (!dest)
         return (NULL);
@@ -163,7 +163,7 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
     {
         if (i == index)
         {
-            if (set_pos(p,map[i],config) == -1)
+            if (set_pos(p,p->map[i],config) == -1)
                 return (NULL);
             i++; // mettre dans pos
         }
@@ -174,8 +174,10 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
         k++;      
         i++;
     }
-    printf("len de k = %d\n",k);
+    
     dest[k] = 0;
+    free_double_array(p->map);
+    printf("%s",dest[3]);
     return (dest);
     
 }
@@ -200,7 +202,7 @@ int get_info(t_parsing *p, char **config)
                 p->map = get_pos_remove(p,p->map,config[count],index);
                 if (!p->map)
                 {
-                    //printf("!p->map");
+                    printf("!p->map");
                     return (-1);
                 }
                 break ;
@@ -225,7 +227,7 @@ int get_config(t_parsing *p, char *dest)
     init_map(dest, p);
     if (get_info(p,config) == -1)
         return (-1);
-    
+    free(config);
     //printdoubletab(p->map);
     if (check_map(p->map) == -1)
         return (-1);
