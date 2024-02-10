@@ -1,52 +1,5 @@
 #include "../includes/parsing.h"
 
-
-
-
-static t_pos	*get_info(char *arg,char *value)
-{
-    t_pos *new;
-
-    new = (t_pos *)malloc(sizeof(t_pos));
-    if (!new)
-        return (-1);
-    
-    new->arg = arg;
-    new->value = value;
-    new->next = NULL;
-    new->back = NULL;
-	return (new);
-}
-
-int push_front_list(t_pos **pos,t_pos *new,t_parsing *p)
-{
-    t_pos *tmp;
-
-    tmp = *pos;
-    //printf("new arg : %s\n",new->arg);
-    if(*pos == NULL)
-    {
-        *pos = new;
-        p->begin = new;
-        return (1);
-    }
-    while (tmp->next != NULL)
-        tmp = tmp->next;
-    tmp->next = new;
-    new->back = tmp;
-    return (1);
-}
-
-void	get_list(t_pos **pos, t_parsing *p , char *arg, char *value)
-{
-	t_pos	*new;
-
-	new = get_info(arg,value);
-	if (!new)
-		return ;
-	push_front_list(pos,new,p);
-}
-
 int push_malloc(t_parsing *p,char *str)
 {
     t_malloc *new;
@@ -111,4 +64,21 @@ int check_only_space(char *str,int index)
             return (-1);
     }
     return (1);
+}
+
+char *get_nmalloc(char *str, int start, int end)
+{
+    char *dest;
+    int i;
+
+    i = 0;
+    dest = malloc(sizeof(char *) * end - start + 1);
+    if (!dest)
+        return (NULL);
+    while (start != end)
+    {
+        dest[i++] = str[start++];
+    }
+    dest[i] = 0;
+    return (dest);
 }

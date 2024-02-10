@@ -61,14 +61,14 @@ int main(int ac , char **argv)
     if (ac != 2)
         return (-1);
     fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
+    if (fd == -1 || ft_check_format(argv[1],".cub") == -1)
     {
-        printf("Error file");
+        printf("%sError file%s\n",RED,RESET);
         return (-1);
     }
     if (parsing(p,fd) == -1)
     {
-        printf("Error in parsing\n");
+        printf("%sError in parsing%s\n",RED,RESET);
         return (-1);
     }
 }

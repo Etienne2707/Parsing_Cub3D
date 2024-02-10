@@ -1,6 +1,20 @@
 #include "../includes/parsing.h"
 
 
+int skip_string(char *str)
+{
+    int i;
+    
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] >= 33 && str[i] <= 127)
+            return (-1);
+        i++;
+    }
+    return (1);
+}
+
 int check_char(char **map)
 {
     int i;
@@ -14,7 +28,6 @@ int check_char(char **map)
         k = 0;
         while (map[i][k] != '\0')
         {
-            //printf("%c",map[i][k]);
             if (map[i][k] != 32 && map[i][k] != '1' && map[i][k] != '0' && map[i][k] != 'N')
                 return (-1);
             if (map[i][k] == 'N')

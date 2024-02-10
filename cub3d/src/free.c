@@ -21,7 +21,6 @@ void    free_list(t_pos **pos)
     if (!pos)
         return ;
     tmp = *pos;
-    printf("pos = %s\n",tmp->value);
     while (tmp != NULL)
     {
         tmp2 = tmp;
@@ -32,14 +31,8 @@ void    free_list(t_pos **pos)
     *pos = NULL;
 }
 
-void    printlist(t_pos *pos)
-{
-    
-}
-
 void    free_structs(t_parsing *p)
 {
-    printf("%s\n",p->begin->arg);
     free_double_array(p->map);
     free_list(&p->begin);
     free(p);
