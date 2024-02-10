@@ -58,11 +58,11 @@ int get_info(t_parsing *p, char **config)
             index++;
         }
         if (p->map[index] == 0)
-        {
             return (-1);
-        }
         count++;
     }
+    if (check_path(p->pos) == -1)
+        return (-1);
     //printf("count = %d\n",  count);
     return (1);
 }

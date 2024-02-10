@@ -22,6 +22,7 @@ typedef struct s_pos
 {
     char *arg;
     char *value;
+    int   *range;
     struct s_pos	*next;
 	struct s_pos	*back;
 

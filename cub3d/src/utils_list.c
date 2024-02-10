@@ -4,6 +4,8 @@ int	get_list(t_pos **pos, t_parsing *p , char *arg, char *value)
 {
 	t_pos	*new;
 
+    if (arg[0] == '\0')
+        return (-1);
 	new = get_info_list(arg,value);
 	if (!new)
 		return -1 ;
@@ -13,9 +15,20 @@ int	get_list(t_pos **pos, t_parsing *p , char *arg, char *value)
 
 void print_list(t_pos *pos) 
 {
+    int i;
+
+    i = 0;
     t_pos *current = pos;
     while (current != NULL) {
         printf("liste chaine arg: %s value : %s\n", current->arg, current->value);
+        if (current->range != NULL)
+        {
+            while (i < 2)
+            {
+                printf("tab[%d] = %d \n",i,pos->range[i]);
+                i++;
+            }
+        }
         current = current->next;
     }
 }
@@ -26,9 +39,10 @@ static t_pos	*get_info_list(char *arg,char *value)
 
     new = (t_pos *)malloc(sizeof(t_pos));
     if (!new)
-        return (-1);
+        return (NULL);
     new->arg = arg;
     new->value = value;
+    new->range = NULL;
     new->next = NULL;
     new->back = NULL;
 	return (new);

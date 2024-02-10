@@ -25,6 +25,8 @@ void    free_list(t_pos **pos)
     {
         tmp2 = tmp;
         tmp = tmp->next;
+        if (tmp2->range != NULL)
+            free(tmp2->range);
         free(tmp2->arg);
         free(tmp2);
     }

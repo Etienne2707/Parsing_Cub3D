@@ -30,7 +30,7 @@ int set_pos(t_parsing *p,char *map,char *config)
     if (!map)
         return (-1);
     //printf("map :%s\n",map);
-    if ((get_list(&p->pos,p,map,config) == -1) || (check_path(p->pos) == -1))
+    if ((get_list(&p->pos,p,map,config) == -1))
         return (-1);
 }
 
@@ -65,5 +65,4 @@ char** get_pos_remove(t_parsing *p,char **map,char *config,int index)
     dest[k] = 0;
     free_double_array(p->map);
     return (dest);
-    
 }

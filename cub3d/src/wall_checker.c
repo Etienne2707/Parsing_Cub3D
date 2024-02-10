@@ -98,10 +98,13 @@ int check_wall(t_map *m)
         k = 0;
         while (m->_map[i][k] != '\0')
         {
-            if (m->_map[i][k] == '0')
+            if (m->_map[i][k] == '0' || m->_map[i][k] == 'N')
             {
                 if (check_wall_pos(m,i,k) == -1)
+                {
+                    printf("%d\n", i);
                     return (-1);
+                }
             }
             k++;
         }

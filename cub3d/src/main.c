@@ -38,6 +38,7 @@ int parsing(t_parsing *p, int fd)
     }
     if (get_config(p,dest) == -1)
     {
+        printf("get_config");
         return(-1);
     }
     if (parsing_map(p) == -1)
