@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mle-duc <mle-duc@student.42.fr>            +#+  +:+       +#+         #
+#    By: educlos <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 16:55:24 by mle-duc           #+#    #+#              #
-#    Updated: 2023/11/29 02:32:36 by mle-duc          ###   ########.fr        #
+#    Updated: 2024/02/12 14:06:37 by educlos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			parsing
+NAME =			cub3d
 
 CC =			cc
 
@@ -26,7 +26,7 @@ SRCS =			$(addprefix src/, \
 
 OBJS =			${SRCS:.c=.o}
 
-CFLAGS =		-g3
+CFLAGS =		-g3 -Wall -Werror -Wextra
 
 LIBFT_PATH =	libft/libft.a
 
