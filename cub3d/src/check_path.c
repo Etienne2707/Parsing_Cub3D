@@ -69,7 +69,6 @@ int	check_path(t_pos *pos)
 		}
 		else if (fd == -1)
 		{
-			printf("%s\n", current->arg);
 			return (-1);
 		}
 		current = current->next;

@@ -45,9 +45,6 @@ int	ft_strstr(char *str, char *to_find)
 
 int	check_arg_after(char *str, int last)
 {
-	int	i;
-
-	i = 0;
 	if (str[last] == '\n')
 		return (0);
 	last = skip_space(str, last);

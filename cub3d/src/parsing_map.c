@@ -33,8 +33,6 @@ int	get_last_map(char **map, int first)
 	i = first;
 	while (map[i] != 0)
 	{
-		if (skip_string(map[i]) == 1)
-			return (i);
 		i++;
 	}
 	return (i);
