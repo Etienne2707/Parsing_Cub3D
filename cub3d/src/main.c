@@ -17,6 +17,7 @@ int	init_pstruct(t_parsing *p)
 	p->lcount = 0;
 	p->map = NULL;
 	p->pos = NULL;
+	p->_map = NULL;
 	return (1);
 }
 
@@ -54,7 +55,6 @@ int	parsing(t_parsing *p, int fd)
 		return (-1);
 	if (parsing_map(p) == -1)
 		return (-1);
-	free_structs(p);
 	return (1);
 }
 

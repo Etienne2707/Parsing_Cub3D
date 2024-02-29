@@ -23,7 +23,7 @@ void	printtab(char *str)
 			printf("%s%c%s", RED, str[i], RESET);
 		else if (str[i] == '0')
 			printf("%s%c%s", GREEN, str[i], RESET);
-		else if (str[i] == 'N')
+		else if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
 			printf("%s%c%s", YELLOW, str[i], RESET);
 		else
 			printf("%c", str[i]);

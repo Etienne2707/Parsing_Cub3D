@@ -40,9 +40,9 @@ int	check_char(char **map)
 		while (map[i][k] != '\0')
 		{
 			if (map[i][k] != 32 && map[i][k] != '1' && map[i][k] != '0'
-				&& map[i][k] != 'N')
+				&& map[i][k] != 'N' &&  map[i][k] != 'S' && map[i][k] != 'E' && map[i][k] != 'W' )
 				return (-1);
-			if (map[i][k] == 'N')
+			if (map[i][k] == 'N' || map[i][k] == 'S' || map[i][k] == 'E' || map[i][k] == 'W')
 				n_counter++;
 			k++;
 		}

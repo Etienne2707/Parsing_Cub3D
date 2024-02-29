@@ -80,6 +80,7 @@ int	parsing_map(t_parsing *p)
 		return (-1);
 	}
 	printdoubletab(map->_map);
+	struct_parsing(p,map);
 	free_map(map);
 	return (1);
 }

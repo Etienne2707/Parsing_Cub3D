@@ -53,10 +53,14 @@ typedef struct s_parsing
 {
 	int				lcount;
 	char			**map;
+	int				_playerY;
+	int 			_playerX;
+	char			_playerD;
 	t_pos			*begin;
 	t_pos			*pos;
 	t_malloc		*_malloc;
 	t_malloc		*_mbegin;
+	int				**_map;
 }					t_parsing;
 
 typedef struct s_map
@@ -73,6 +77,7 @@ int					check_arg_before(char *src, char *find);
 int					check_arg_after(char *str, int last);
 int					check_map(char **map);
 char				*put_map_line(char *dest, int start, int end);
+void struct_parsing(t_parsing *p, t_map *m);
 
 //check_path
 int					check_path(t_pos *pos);
